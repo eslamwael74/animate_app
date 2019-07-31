@@ -1,9 +1,8 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:animate_app/SingleBarChart/BarChartPainter.dart';
 import 'package:flutter/material.dart';
-
-import 'package:animate_app/BarChart/BarChartPainter.dart';
 
 class ChartPage extends StatefulWidget {
   @override
@@ -51,7 +50,10 @@ class ChartPageState extends State<ChartPage> with TickerProviderStateMixin {
       body: Center(
           child: CustomPaint(
         size: Size(200.0, 100.0),
-        painter: BarChartPainter(currentHeight),
+        painter: BarChartPainter(
+            currentHeight,
+            Color.fromARGB(random.nextInt(254), random.nextInt(254),
+                random.nextInt(254), random.nextInt(254))),
       )),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.refresh),

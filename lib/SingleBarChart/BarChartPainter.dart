@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 class BarChartPainter extends CustomPainter {
   static const barWidth = 10.0;
   final double barHeight;
+  final Color color;
 
-  BarChartPainter(this.barHeight);
+  BarChartPainter(this.barHeight,this.color);
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.blue[400]
+      ..color = color
       ..style = PaintingStyle.fill;
 
     canvas.drawRect(

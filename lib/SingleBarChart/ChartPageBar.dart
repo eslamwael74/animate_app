@@ -3,8 +3,7 @@ import 'dart:math';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:animate_app/BarChart/Bar.dart';
-
+import 'Bar.dart';
 
 class ChartPageBar extends StatefulWidget {
   @override
@@ -23,7 +22,8 @@ class ChartPageState extends State<ChartPageBar> with TickerProviderStateMixin {
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    tween = BarTween(Bar(0.0), Bar(50.0));
+    tween = BarTween(
+        Bar(0.0, Colors.deepOrangeAccent), Bar(50.0, Colors.greenAccent));
     animation.forward();
   }
 
@@ -37,7 +37,7 @@ class ChartPageState extends State<ChartPageBar> with TickerProviderStateMixin {
     setState(() {
       tween = BarTween(
         tween.evaluate(animation),
-        Bar(random.nextDouble() * 100.0),
+        Bar(random.nextDouble() * 100.0, Colors.amber),
       );
       animation.forward(from: 0.0);
     });
@@ -49,7 +49,10 @@ class ChartPageState extends State<ChartPageBar> with TickerProviderStateMixin {
       body: Center(
         child: CustomPaint(
           size: Size(200.0, 100.0),
-          painter: BarChartPainter(tween.animate(animation)),
+          painter: BarChartPainter(
+              tween.animate(animation),
+              Color.fromARGB(random.nextInt(254), random.nextInt(254),
+                  random.nextInt(254), random.nextInt(254))),
         ),
       ),
       floatingActionButton: FloatingActionButton(

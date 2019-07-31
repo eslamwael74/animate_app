@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'AnimatedLogo.dart';
+import 'package:animate_app/AnimateLogo/AnimatedLogo.dart';
 
 class LogoApp extends StatefulWidget {
   _LogoAppState createState() => _LogoAppState();
