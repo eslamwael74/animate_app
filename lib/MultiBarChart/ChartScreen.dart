@@ -5,6 +5,7 @@ import 'package:animate_app/MultiBarChart/BarChartPainter.dart';
 import 'package:animate_app/MultiBarChart/BarChartTween.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 
 
@@ -27,8 +28,8 @@ class ChartPageState extends State<ChartScreen> with TickerProviderStateMixin {
       vsync: this,
     );
     tween = BarChartTween(
-      BarChart.empty(),
-      BarChart.random(random),
+      BarChart.empty(size),
+      BarChart.random(size, random),
     );
     animation.forward();
   }
@@ -43,7 +44,7 @@ class ChartPageState extends State<ChartScreen> with TickerProviderStateMixin {
     setState(() {
       tween = BarChartTween(
         tween.evaluate(animation),
-        BarChart.random(random),
+        BarChart.random(size, random),
       );
       animation.forward(from: 0.0);
     });

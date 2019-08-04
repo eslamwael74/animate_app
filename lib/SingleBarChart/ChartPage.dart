@@ -24,10 +24,27 @@ class ChartPageState extends State<ChartPage> with TickerProviderStateMixin {
 
     animation = AnimationController(
         duration: const Duration(milliseconds: 300), vsync: this)
-      ..addListener(() {
-        setState(() {
-          currentHeight = lerpDouble(startHeight, endHeight, animation.value);
-        });
+      ..addStatusListener((AnimationStatus status) {
+        switch (status) {
+          case AnimationStatus.dismissed:
+            setState(() {
+              currentHeight =
+                  lerpDouble(startHeight, endHeight, animation.value);
+            });
+            print(status);
+            break;
+
+          case AnimationStatus.forward:
+            print(status);
+            break;
+
+          case AnimationStatus.reverse:
+            print(status);
+            break;
+
+          case AnimationStatus.completed:
+            break;
+        }
       });
     startHeight = 0.0;
     currentHeight = 0.0;
